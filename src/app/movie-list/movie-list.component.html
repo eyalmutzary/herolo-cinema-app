@@ -1,0 +1,13 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="list-group">
+    <button class="btn btn-success ml-1 align-item-center"  (click)="showAddAlert()"><i class="fa fa-plus-square lead"></i></button>
+    <div>
+        <app-movie-item 
+        *ngFor="let item of movieList"
+        [movie]="item" 
+        (updated)="updateList()"></app-movie-item>
+    </div>
+</div>
+
+

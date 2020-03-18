@@ -1,0 +1,96 @@
+<div class="backdrop">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit {{ movie.title }}</h5>
+                <button type="button" class="close" (click)="onClose()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input formControlName="title" type="text" class="form-control" placeholder="Movie Title">
+                        <span
+                        *ngIf="!editForm.get('title').valid && editForm.get('title').touched"
+                        class="help-block">
+                        <span class="error-text" *ngIf="editForm.get('title').errors['pattern']">Invalid title!</span>
+                        <span class="error-text" *ngIf="editForm.get('title').errors['required']">This field is required!</span>
+                        </span>
+                        <span class="help-block">
+                            <span class="error-text">{{ error }}</span>
+                        </span> 
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>Year:</label>
+                            <select formControlName="year" class="form-control">
+                                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            </select>
+                            <span
+                            *ngIf="!editForm.get('year').valid && editForm.get('year').touched"
+                            class="help-block">
+                            <span class="error-text" *ngIf="editForm.get('year').errors['required']">This field is required!</span>
+                            </span>   
+                        </div>
+                        <div class="col">
+                            <label>Runtime (minutes):</label>
+                            <input formControlName="runtime" type="number" class="form-control" placeholder="Ex: 125">
+                            <span
+                            *ngIf="!editForm.get('runtime').valid && editForm.get('runtime').touched"
+                            class="help-block">
+                            <span class="error-text" *ngIf="editForm.get('runtime').errors['required']">This field is required!</span>
+                            </span>  
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label>Director's Name:</label>
+                        <input formControlName="director" type="text" class="form-control" placeholder="Director's Name">
+                        <span
+                            *ngIf="!editForm.get('director').valid && editForm.get('director').touched"
+                            class="help-block">
+                            <span class="error-text" *ngIf="editForm.get('director').errors['required']">This field is required!</span>
+                            <span class="error-text" *ngIf="editForm.get('director').errors['pattern']">Invalid name!</span>
+                        </span>  
+                    </div>
+                    <div class="form-group">
+                        <label>Genre:</label>
+                        <select formControlName="genre" class="form-control">
+                            <option *ngFor="let item of genres" [value]="item">{{ item }}</option>
+                        </select>
+                        <span
+                            *ngIf="!editForm.get('genre').valid && editForm.get('genre').touched"
+                            class="help-block">
+                            <span class="error-text" *ngIf="editForm.get('genre').errors['required']">This field is required!</span>
+                        </span>  
+                    </div>
+                    <!-- Genres Test-->
+<!-- 
+                    <div class="row" formArrayName="genres">
+                        <div class="form-group  col-10">
+                            <label>Genre:</label>
+                            <select formControlName="genre" class="form-control">
+                                <option *ngFor="let item of genres" [value]="item">{{ item }}</option>
+                            </select>
+                            <span
+                                *ngIf="!editForm.get('genre').valid && editForm.get('genre').touched"
+                                class="help-block">
+                                <span class="error-text" *ngIf="editForm.get('genre').errors['required']">This field is required!</span>
+                            </span>
+                        </div>
+                        <div class="col"><label></label>
+                            <button class=" btn btn-danger form-control">X</button>
+                        </div>  
+                    </div> -->
+                    <!-- Footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+                    <button type="submit" class="btn btn-warning" [disabled] ="!editForm.valid">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<!-- <li class="list-group-item"><a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a></li> -->
+<ng-template appPlaceholder></ng-template>
+<div (mouseenter)="hover=true" (mouseleave)="hover=false">
+    <a class="list-group-item list-group-item-action m-1"  >
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-2">{{ movie.title }}</h5>
+            <button *ngIf="hover" type="button" class="close mb-2" (click)="showDeleteAlert()">
+                <span>&times;</span>
+            </button>
+        </div>
+        
+        <div class="d-flex w-100 justify-content-between flex-wrap">
+            <div class="">
+                <small class="mb-2">{{ movie.year }} | {{ movie.runtime }} | {{ movie.genre }}</small>
+                <br>
+                <small>Director: {{ movie.director }}</small>
+            </div>
+            <div class="mt-2 ml-auto">
+                <button type="button" class="btn btn-outline-warning btn-sm ml-2" (click)="showEditAlert()">Edit</button>
+            </div>
+        </div> 
+    </a>
+</div>
